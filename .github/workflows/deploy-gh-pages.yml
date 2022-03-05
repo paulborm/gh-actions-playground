@@ -7,19 +7,20 @@ on:
 jobs:
   build:
     name: 🛠 Checkout, install and build
-    uses: actions/checkout@v3
-    uses: actions/setup-node@v2
-    with:
-      node-version-file: '.nvmrc'
+    runs-on: ubuntu-latest
     steps:
-      - name: Install dependencies
+      - uses: actions/checkout@v3
+      - uses: actions/setup-node@v2
+        with:
+          node-version-file: '.nvmrc'
+      - name: Install dependencies       
         run: npm ci
       - name: Build project
         run: npm run build
   deploy:
     name: 🚀 Deploy to GitHub Pages
     needs: build
-    uses: JamesIves/github-pages-deploy-action@v4.2.2
+    uses: JamesIves/github-pages-deploy-action@v4.2.5
     with:
       branch: gh-pages
       folder: dist
