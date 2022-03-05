@@ -18,14 +18,13 @@ jobs:
         run: npm install
         
       - name: Build project
-        run: |
-          npm run build
-          ls -la
+        run: npm run build
           
       - name: Upload Artifacts
         uses: actions/upload-artifact@v3
         with:
           name: build-artifact
+          # Uploads just the files contained in `path`
           path: dist
   deploy:
     name: 🚀 Deploy to GitHub Pages
@@ -37,14 +36,10 @@ jobs:
       - uses: actions/download-artifact@v3
         with:
           name: build-artifact
-          path: dist
-          
-      - run: ls -la
-      
-      - run: ls dist -la
+          path: artifact-content
       
       - name: Run deploy action
         uses: JamesIves/github-pages-deploy-action@v4.2.5
         with:
          branch: gh-pages
-         folder: dist
+         folder: artifact-content
