@@ -2,7 +2,7 @@
     "name": "@paulborm/gh-actions-playground",
     "description": "",
     "scripts": {
-        "build": "echo \"Building something here ...\" && mkdir dist && cp -r src dist",
+        "build": "mkdir dist && cp -r src dist && echo \"Building something ...\"",
         "test": "echo \"Error: no test specified\" && exit 1"
     },
     "repository": {
